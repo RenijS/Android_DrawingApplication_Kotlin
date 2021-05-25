@@ -133,6 +133,16 @@
             android:src="@drawable/pallet_normal"
             android:tag="@android:color/holo_purple"
             android:onClick="paintClicked"/>
+        <ImageButton
+            android:id="@+id/ib_white"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_margin="2dp"
+            android:contentDescription="@string/color_white"
+            android:background="@color/white"
+            android:src="@drawable/pallet_normal"
+            android:tag="@color/white"
+            android:onClick="paintClicked"/>
 
     </LinearLayout>
 
@@ -182,5 +192,35 @@
             android:layout_marginEnd="3dp"
             app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
             android:contentDescription="@string/redo" />
+
+        <ImageButton
+            android:id="@+id/ib_circle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="3dp"
+            app:srcCompat="@drawable/ic_circle"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/circle" />
+
+        <ImageButton
+            android:id="@+id/ib_rectangle"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="3dp"
+            app:srcCompat="@drawable/ic_rectangle"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/rectangle" />
+
+        <ImageButton
+            android:id="@+id/ib_cancel"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="4dp"
+            android:layout_marginEnd="3dp"
+            app:srcCompat="@drawable/ic_cancel"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/cancel_drawing_shapes" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

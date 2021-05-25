@@ -29,6 +29,13 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
     //stores undo path
     private val mUndoPath = ArrayList<CustomPath>()
 
+    //circle radius
+    var radius = ""
+    //rectangle length
+    var length = ""
+    //rectangle breadth
+    var breadth = ""
+
     init {
         setUpDrawing()
     }
@@ -118,6 +125,14 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
         }
         //invalidate the whole view
         invalidate()
+        //draws circle
+        if (touchX != null && touchY != null && radius.isNotEmpty()) {
+            canvas!!.drawCircle(touchX, touchY, radius.toFloat(), mDrawPaint!!)
+        }
+        //draws rectangle
+        if (touchX != null && touchY != null && length.isNotEmpty() && breadth.isNotEmpty()) {
+            canvas!!.drawRect(touchX, touchY, touchX+length.toFloat(), touchY+breadth.toFloat(),mDrawPaint!!)
+        }
         return true
     }
 
@@ -135,6 +150,18 @@ class DrawingView(context: Context, attrs: AttributeSet): View(context, attrs) {
 
     internal inner class CustomPath(var color: Int,
                                     var brushThickness: Float) : Path(){
+
+    }
+
+    fun refresh(){
+        mPaths.clear()
+        mUndoPath.clear()
+        radius = ""
+        length = ""
+        breadth = ""
+        invalidate()
+        canvas!!.drawColor(Color.TRANSPARENT, PorterDuff.Mode.CLEAR)
+
 
     }
 }

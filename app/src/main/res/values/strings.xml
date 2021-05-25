@@ -14,4 +14,19 @@
     <string name="undo">undo</string>
     <string name="redo">redo</string>
     <string name="save">save</string>
+    <string name="length_and_breadth">Length and Breadth?</string>
+    <string name="length">length</string>
+    <string name="breadth">breadth</string>
+    <string name="enter">Enter</string>
+    <string name="radius">Radius?</string>
+    <string name="ETradius">radius</string>
+    <string name="color_white">color white</string>
+    <string name="refresh">refresh</string>
+    <string name="help">Help</string>
+    <string name="cancel_drawing_shapes">cancel drawing shapes</string>
+    <string name="rectangle">rectangle</string>
+    <string name="circle">circle</string>
+    <string name="image_medium">image_medium</string>
+    <string name="image_small">image_small</string>
+    <string name="image_large">image_large</string>
 </resources>
