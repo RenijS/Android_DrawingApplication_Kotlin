@@ -11,8 +11,12 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
@@ -55,14 +59,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        binding.ibUndo.setOnClickListener {
-            binding.drawingView.onClickUndo()
-        }
+        binding.ibUndo.setOnClickListener { binding.drawingView.onClickUndo() }
 
-        binding.ibRedo.setOnClickListener {
-            binding.drawingView.onClickRedo()
-        }
+        binding.ibRedo.setOnClickListener { binding.drawingView.onClickRedo() }
 
+        binding.ibCircle.setOnClickListener { chooseCircleDialogue() }
+
+        binding.ibRectangle.setOnClickListener { chooseRectangleDialogue() }
+
+        binding.ibCancel.setOnClickListener {
+            binding.apply {
+                drawingView.radius = ""
+                drawingView.length = ""
+                drawingView.breadth = ""
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -156,5 +167,62 @@ class MainActivity : AppCompatActivity() {
     companion object{
         private const val STORAGE_PERMISSION_CODE = 1
         private const val GALLERY = 2
+    }
+
+    private fun chooseCircleDialogue(){
+        val circleDialog = Dialog(this)
+        circleDialog.setContentView(R.layout.circle_dialogue)
+        circleDialog.setTitle("Circle radius: ")
+
+        circleDialog.findViewById<Button>(R.id.button_Enter).setOnClickListener {
+            if (circleDialog.findViewById<EditText>(R.id.et_Radius).text.isNotEmpty()) {
+                binding.drawingView.radius =
+                    circleDialog.findViewById<EditText>(R.id.et_Radius).text.toString()
+                //if before this rectangle was selected then, rectangle needs to be cancelled if not then along with circle rectangle is also created
+                binding.drawingView.length = ""
+                binding.drawingView.breadth = ""
+            }
+            circleDialog.dismiss()
+        }
+
+        circleDialog.show()
+    }
+
+    private fun chooseRectangleDialogue(){
+        val rectDialog = Dialog(this)
+        rectDialog.setContentView(R.layout.rectangle_dialog)
+        rectDialog.setTitle("Rectangle l & b: ")
+
+        rectDialog.findViewById<Button>(R.id.button_Enter).setOnClickListener {
+            if (rectDialog.findViewById<EditText>(R.id.et_Length).text.isNotEmpty() && rectDialog.findViewById<EditText>(R.id.et_Breadth).text.isNotEmpty()) {
+                binding.drawingView.length =
+                    rectDialog.findViewById<EditText>(R.id.et_Length).text.toString()
+                binding.drawingView.breadth =
+                    rectDialog.findViewById<EditText>(R.id.et_Breadth).text.toString()
+                //if before this circle was selected then, circle needs to be cancelled if not then along with rectangle circle is also created
+                binding.drawingView.radius = ""
+            }
+            rectDialog.dismiss()
+        }
+
+        rectDialog.show()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId){
+            R.id.menu_refresh -> {
+                binding.ivBackground.setImageDrawable(null)
+                binding.drawingView.refresh()
+                true
+            }
+            R.id.menu_help->{true}
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 }
