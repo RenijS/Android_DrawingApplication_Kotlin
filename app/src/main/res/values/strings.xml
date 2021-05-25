@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Drawing Application</string>
+    <string name="background_image">background image</string>
+    <string name="color_skin">color skin</string>
+    <string name="color_black">color black</string>
+    <string name="color_red">color red</string>
+    <string name="color_green">color green</string>
+    <string name="color_blue">color blue</string>
+    <string name="color_yellow">color yellow</string>
+    <string name="color_lollipop">color lollipop</string>
+    <string name="color_purple">color purple</string>
+    <string name="brush_image">brush image</string>
+    <string name="gallery_image">gallery image</string>
+    <string name="undo">undo</string>
+    <string name="redo">redo</string>
+    <string name="save">save</string>
+</resources>
