@@ -221,7 +221,11 @@ class MainActivity : AppCompatActivity() {
                 binding.drawingView.refresh()
                 true
             }
-            R.id.menu_help->{true}
+            R.id.menu_help->{
+                val intent = Intent(this, HelpActivity::class.java)
+                startActivity(intent)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }
